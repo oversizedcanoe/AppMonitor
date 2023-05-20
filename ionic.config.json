@@ -1,0 +1,7 @@
+{
+  "name": "AppMonitor",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
