@@ -23,28 +23,18 @@
         <ion-buttons slot="start">
           <ion-menu-button></ion-menu-button>
       </ion-buttons>
-        <ion-title>Page Title</ion-title>
+        <ion-title>{{appTitle}}</ion-title>
       </ion-toolbar>
     </ion-header>
 
     <!--Page content-->
     <ion-content class="ion-padding">
-      
-      <ion-list lines="inset">
-        <ion-item *ngFor="let app of apps">
-          <ion-avatar slot="start">
-            <img alt="Icon for {{app.name}}" src="{{app.base64Icon}}" />
-          </ion-avatar>
-          <ion-label>
-            <h3>{{app.name}}</h3>
-            <small>{{app.description}}</small>
-          </ion-label>
-        </ion-item>
-      </ion-list>
-
-
-
-
+      <div *ngIf="showIntroSetupPage else dashboard">
+        <app-intro-setup class="ion-padding"></app-intro-setup>
+      </div>
+      <ng-template #dashboard>
+        <p>Dashboard</p>
+      </ng-template>
     </ion-content>
   </div>
 </ion-app>

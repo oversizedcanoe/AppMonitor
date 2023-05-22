@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AppInfo, AppList, AppListQueryParams } from 'app-list-capacitor';
+import { TitleService } from './shared/services/title/title.service';
 
 @Component({
   selector: 'app-root',
@@ -8,14 +8,26 @@ import { AppInfo, AppList, AppListQueryParams } from 'app-list-capacitor';
 })
 export class AppComponent implements OnInit {
 
-  apps: AppInfo[] = [];
-  
-  constructor() {
-    
+  showIntroSetupPage: Boolean = false;
+  appTitle: string = "App Monitor";
+
+  constructor(private titleService: TitleService) {
+    titleService.onTitleChanged.subscribe((newTitle: string) => {
+      this.appTitle = newTitle;
+    })
   }
 
-  async ngOnInit() {
-    let allApps = (await AppList.getInstalledApps(new AppListQueryParams())).installedApps;
-    this.apps = allApps.sort((app1, app2) => app1.name.localeCompare(app2.name));
+  ngOnInit(): void {
+    let userHasUsedAppBefore: Boolean = false; // Query database or storage or something to check
+
+    if (userHasUsedAppBefore == false) {
+      this.showIntroSetupPage = true;
+    }
+
+    // Need to decide what to show the user when loading.
+    // If they have never used the app before, show them intro/walkthrough
+    // If they have, show them... a dashboard? Not sure yet
   }
+
+
 }
