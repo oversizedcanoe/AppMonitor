@@ -29,8 +29,19 @@
 
     <!--Page content-->
     <ion-content class="ion-padding">
-      <h2>Main content here</h2>
-      <br />
+      
+      <ion-list lines="inset">
+        <ion-item *ngFor="let app of apps">
+          <ion-avatar slot="start">
+            <img alt="Icon for {{app.name}}" src="{{app.base64Icon}}" />
+          </ion-avatar>
+          <ion-label>{{app.name}}</ion-label>
+        </ion-item>
+      </ion-list>
+
+
+
+
     </ion-content>
   </div>
 </ion-app>
