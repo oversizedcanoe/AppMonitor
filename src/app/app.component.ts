@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AppInfo, AppList } from 'app-list-capacitor';
+import { AppInfo, AppList, AppListQueryParams } from 'app-list-capacitor';
 
 @Component({
   selector: 'app-root',
@@ -15,9 +15,7 @@ export class AppComponent implements OnInit {
   }
 
   async ngOnInit() {
-    let allApps = (await AppList.getInstalledApps()).installedApps;
-    allApps.sort((app1, app2) => app1.name.localeCompare(app2.name));
-    // We only care about non-system apps or system apps which have been updated (pre-installed, such as GMail)
-    this.apps = allApps.filter((app) => app.isSystemApp == false || app.isUpdatedSystemApp == true);
+    let allApps = (await AppList.getInstalledApps(new AppListQueryParams())).installedApps;
+    this.apps = allApps.sort((app1, app2) => app1.name.localeCompare(app2.name));
   }
 }

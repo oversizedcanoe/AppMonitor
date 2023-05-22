@@ -35,7 +35,10 @@
           <ion-avatar slot="start">
             <img alt="Icon for {{app.name}}" src="{{app.base64Icon}}" />
           </ion-avatar>
-          <ion-label>{{app.name}}</ion-label>
+          <ion-label>
+            <h3>{{app.name}}</h3>
+            <small>{{app.description}}</small>
+          </ion-label>
         </ion-item>
       </ion-list>
 
