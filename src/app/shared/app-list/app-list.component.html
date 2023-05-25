@@ -1,5 +1,5 @@
 <ion-list lines="inset">
-  <ion-item *ngFor="let app of apps">
+  <ion-item *ngFor="let app of apps" (click)="onAppClick(app)" button [color]='isSelected(app) ? highlightColor : ""'>
     <ion-avatar slot="start">
       <img alt="Icon for {{app.name}}" src="{{app.base64Icon}}" />
     </ion-avatar>
