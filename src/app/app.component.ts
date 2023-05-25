@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, NgZone } from '@angular/core';
 import { TitleService } from './shared/services/title/title.service';
 
 @Component({
@@ -11,9 +11,16 @@ export class AppComponent implements OnInit {
   showIntroSetupPage: Boolean = false;
   appTitle: string = "App Monitor";
 
-  constructor(private titleService: TitleService) {
+  constructor(private titleService: TitleService, private ngZone: NgZone) {
     titleService.onTitleChanged.subscribe((newTitle: string) => {
-      this.appTitle = newTitle;
+      // This is all required to prevent appTitle from being changed after the changes have been detected/set by Angular. Lame.
+      this.ngZone.runOutsideAngular(() => {
+        setTimeout(() => {
+          this.ngZone.run(() => {
+            this.appTitle = newTitle;
+          })
+        })
+      })
     })
   }
 

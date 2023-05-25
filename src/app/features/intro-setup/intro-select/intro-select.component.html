@@ -1,6 +1,6 @@
 <ion-content class="ion-padding">
-  <app-list></app-list>
+  <app-list (appSelected)="onAppSelected($event)" (appDeselected)="onAppDeselected($event)"></app-list>
   <ion-nav-link router-direction="forward" [component]="component">
-    <ion-button>Start Monitoring</ion-button>
+    <ion-button (click)="onStartClick()">Start Monitoring</ion-button>
   </ion-nav-link>
 </ion-content>
