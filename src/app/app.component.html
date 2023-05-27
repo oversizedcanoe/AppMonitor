@@ -30,7 +30,7 @@
     <!--Page content-->
     <ion-content class="ion-padding">
       <div *ngIf="showIntroSetupPage else dashboard">
-        <app-intro-setup class="ion-padding"></app-intro-setup>
+        <app-intro-setup class="ion-padding" (initialAppsSelectionEvent)="onInitialAppSelectionEvent($event)"></app-intro-setup>
       </div>
       <ng-template #dashboard>
         <p>Dashboard</p>

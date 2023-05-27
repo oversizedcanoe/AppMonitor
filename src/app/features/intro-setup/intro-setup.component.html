@@ -1,1 +1,24 @@
-<ion-nav [root]="component" [swipeGesture]="true" (ionNavDidChange)="onNavChange($event)" />
+<!-- <ion-nav [root]="component" [swipeGesture]="true" (ionNavDidChange)="onNavChange($event)" /> -->
+<div class="pageContents">
+    <div *ngIf="pageNumber == 1">
+        <p>
+            Welcome to App Monitor. This app allows you to track app usage of specific apps. 
+            It also sends push notifications when chosen apps reach certain usage metrics, such as being open for five minutes straight, 
+            or thirty total minutes in one day.
+        </p>
+        <p>
+            Click next to chose the apps you wish to monitor. By default, you'll be notified after using them for five consecutive minutes,
+            but you can customize specifics of everything later.
+        </p>
+    </div>    
+    <div *ngIf="pageNumber == 2">
+        <app-list (appSelected)="onAppSelected($event)" (appDeselected)="onAppDeselected($event)"></app-list>
+    </div>
+    <div *ngIf="pageNumber == 3">
+        <p>You're all set! You can customize notification settings anytime in the "Manage Notifications" menu item.</p>
+    </div>
+</div>
+
+<div class="pageButton">
+    <ion-button (click)="onNextPage()" class="continueButton" expand="block" size="large">Continue</ion-button>
+</div>
